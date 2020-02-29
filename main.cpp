@@ -156,6 +156,68 @@ void MergeSort(int* arr, int* arrTmp,int nLeft, int nRight)
 	}
 }
 
+class MyNode
+{
+public:
+	MyNode(int nData)
+	{
+		m_nData = nData;
+		m_pNext = NULL;
+	}
+
+public:
+	int m_nData;
+	MyNode* m_pNext;
+};
+
+class MyList
+{
+public:
+
+	MyList()
+	{
+		first = NULL;
+	}
+
+	//头插法
+	void Insert(int nNum)
+	{
+		MyNode* nodeAdd = new MyNode(nNum);
+		nodeAdd->m_pNext = first;
+		first = nodeAdd;
+	}
+
+	//反转
+	void Reverse()
+	{
+		MyNode* p = first;  //存储需要改变的节点 下一个点
+		MyNode* q = NULL;   //存储当前点
+		while (p)
+		{
+			MyNode* tmp = q;
+			q = p;
+			p = p->m_pNext;
+			q->m_pNext = tmp;
+		}
+
+		first = q;
+	}
+
+	void Show()
+	{
+		MyNode* tmpBeg = first;
+		while (tmpBeg != NULL)
+		{
+			cout << tmpBeg->m_nData;
+			tmpBeg = tmpBeg->m_pNext;
+			if (tmpBeg) cout << "->";
+		}
+	}
+
+public:
+	MyNode* first;
+};
+
 int main()
 {
 	int arrTest[] = { 2, 4, 6, 5, 8, 0, 9, 7, 3, 1 };
@@ -212,6 +274,19 @@ int main()
 	cout << "after MergeSort" << endl;
 	CoutArr(arrTestMerge, 10);
 
+
+	cout << endl;
+	cout << "====================" << endl;
+	MyList listTest;
+	listTest.Insert(0);
+	listTest.Insert(1);
+	listTest.Insert(2);
+	listTest.Insert(3);
+	listTest.Insert(4);
+	listTest.Show();
+	listTest.Reverse();
+	cout << endl << "after Reverse." << endl;
+	listTest.Show();
 
 	system("pause");
 	return 0;
