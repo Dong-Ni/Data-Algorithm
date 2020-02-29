@@ -127,6 +127,35 @@ void QuickSort(int* arr, int nLeft, int nRight)
 	}
 }
 
+//递归归并排序
+void Merge(int* arr, int* arrTmp, int nLeft, int nMid, int nRight)
+{
+	int nFirstTmp = nLeft;  // 左子序起始
+	int nSecondTmp = nMid +1; // 右子序起始
+	int nRst = 0;
+	for (; nFirstTmp <= nMid && nSecondTmp <= nRight;)
+	{
+		if (arr[nFirstTmp] <= arr[nSecondTmp]) arrTmp[nRst++] = arr[nFirstTmp++];
+		else arrTmp[nRst++] = arr[nSecondTmp++];
+	}
+
+	while (nFirstTmp <= nMid) arrTmp[nRst++] = arr[nFirstTmp++];
+	while (nSecondTmp <= nRight) arrTmp[nRst++] = arr[nSecondTmp++];
+	nRst = 0;
+	while (nLeft <= nRight) arr[nLeft++] = arrTmp[nRst++];
+}
+
+void MergeSort(int* arr, int* arrTmp,int nLeft, int nRight)
+{
+	if (nLeft < nRight)
+	{
+		int nMid = (nLeft + nRight) / 2;
+		MergeSort(arr, arrTmp, nLeft, nMid);  //左半边归并
+		MergeSort(arr, arrTmp, nMid+1, nRight); //右半边归并
+		Merge(arr, arrTmp, nLeft, nMid, nRight);
+	}
+}
+
 int main()
 {
 	int arrTest[] = { 2, 4, 6, 5, 8, 0, 9, 7, 3, 1 };
@@ -171,7 +200,17 @@ int main()
 	int arrTestQuick[] = { 2, 4, 6, 5, 8, 0, 9, 7, 3, 1 };
 	CoutArr(arrTestQuick, 10);
 	QuickSort(arrTestQuick, 0, 9);
+	cout << "after QuickSort" << endl;
 	CoutArr(arrTestQuick, 10);
+
+	cout << endl;
+	cout << "====================" << endl;
+	int arrTestMerge[] = { 2, 4, 6, 5, 8, 0, 9, 7, 3, 1 };
+	CoutArr(arrTestMerge, 10);
+	int *arrTmp = new int[10];
+	MergeSort(arrTestMerge, arrTmp, 0, 9);
+	cout << "after MergeSort" << endl;
+	CoutArr(arrTestMerge, 10);
 
 
 	system("pause");
