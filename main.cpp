@@ -100,6 +100,33 @@ void InsertSort(int* arr, int nNum)
 	}
 }
 
+//递归快速排序
+void QuickSort(int* arr, int nLeft, int nRight)
+{
+	if (nLeft < nRight)
+	{
+		int i = nLeft;
+		int j = nRight + 1;  //分清楚为什么这里要+1
+		int nFlag = arr[i];  //用最左侧的数做标志位
+
+		//比nFlag小的放在左边，大的放在右边
+		do 
+		{
+			do i++; while (arr[i] < nFlag);
+			do j--; while (arr[j] > nFlag);
+			if (i < j)
+			{
+				swap(arr[i], arr[j]);
+			}
+		} while (i < j);
+		swap(arr[nLeft], arr[j]); //移动头上标准数据
+
+		//递归
+		QuickSort(arr, nLeft, j - 1);
+		QuickSort(arr, j + 1, nRight);
+	}
+}
+
 int main()
 {
 	int arrTest[] = { 2, 4, 6, 5, 8, 0, 9, 7, 3, 1 };
@@ -138,6 +165,15 @@ int main()
 	InsertSort(arrTestInsert, 10);
 	cout << "after InsertSort" << endl;
 	CoutArr(arrTestInsert, 10);
+
+	cout << endl;
+	cout << "====================" << endl;
+	int arrTestQuick[] = { 2, 4, 6, 5, 8, 0, 9, 7, 3, 1 };
+	CoutArr(arrTestQuick, 10);
+	QuickSort(arrTestQuick, 0, 9);
+	CoutArr(arrTestQuick, 10);
+
+
 	system("pause");
 	return 0;
 
