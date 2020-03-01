@@ -1,14 +1,17 @@
 #include <iostream>
 #include <vector>
+#include <list>
 
 using namespace std;
 
-void CoutArr(int arr[], int nLen)
+template<class T>
+void CoutVector(T& t, int nNum)
 {
-	for (int i = 0; i < nLen; ++i)
+	for (int i = 0; i < nNum; ++i)
 	{
-		cout << arr[i] << " ";
+		cout << t[i] << " ";
 	}
+
 	cout << endl;
 }
 
@@ -218,21 +221,68 @@ public:
 	MyNode* first;
 };
 
+//基数排序
+int MaxRadix(vector<int>& vecArr)  //返回最高位个数
+{
+	int nNum = 1;
+	int nMax = 10;
+	for (size_t i = 0; i < vecArr.size(); ++i)
+	{
+		while (vecArr[i] / nMax)
+		{
+			nMax *= 10;
+			nNum++;
+		}
+	}
+
+	return nNum;
+}
+
+void RadixSort(vector<int>& vecArr)
+{
+	int nMaxRadix = MaxRadix(vecArr);
+	list<int> tmpList[10];
+	int nSort, nFactor;
+	size_t nNum;
+	for (nSort = 0, nFactor = 1; nSort < nMaxRadix; ++nSort, nFactor *= 10)
+	{
+		//把对应位置的数插入对应的队列中
+		for (nNum = 0; nNum < vecArr.size(); ++nNum)
+		{
+			//nFactor，提取个位，十位等，%10,取模可以去除高位,然后把vecArr[nNum]放到对应的链表
+			tmpList[(vecArr[nNum] / nFactor) % 10].push_back(vecArr[nNum]);
+		}
+
+		//取出临时队列中的数放回数组中
+		nNum = 0;
+		for (int n = 0; n < 10; ++n)
+		{
+			while (!tmpList[n].empty())
+			{
+				vecArr[nNum++] = tmpList[n].front();
+				tmpList[n].pop_front();
+			}
+		}
+		cout << "the ==  " << nSort+1 << "  == time" << endl;
+		CoutVector(vecArr, 10);
+	}
+}
+
 int main()
 {
 	int arrTest[] = { 2, 4, 6, 5, 8, 0, 9, 7, 3, 1 };
-	CoutArr(arrTest, 10);
+	CoutVector(arrTest, 10);
 	BubbleSort(arrTest, 10);
 	cout << "after BubbleSort" << endl;
-	CoutArr(arrTest, 10);
+	CoutVector(arrTest, 10);
 
 	cout << endl;
 	cout << "====================" << endl;
 	int arrTestsel[] = { 2, 4, 6, 5, 8, 0, 9, 7, 3, 1 };
-	CoutArr(arrTestsel, 10);
+	CoutVector(arrTestsel, 10);
 	SelectionSort(arrTestsel, 10);
 	cout << "after SelectionSort" << endl;
-	CoutArr(arrTestsel, 10);
+	CoutVector(arrTestsel, 10);
 
 	cout << endl;
 	cout << "====================" << endl;
@@ -252,27 +302,27 @@ int main()
 	cout << endl;
 	cout << "====================" << endl;
 	int arrTestInsert[] = { 2, 4, 6, 5, 8, 0, 9, 7, 3, 1 };
-	CoutArr(arrTestInsert, 10);
+	CoutVector(arrTestInsert, 10);
 	InsertSort(arrTestInsert, 10);
 	cout << "after InsertSort" << endl;
-	CoutArr(arrTestInsert, 10);
+	CoutVector(arrTestInsert, 10);
 
 	cout << endl;
 	cout << "====================" << endl;
 	int arrTestQuick[] = { 2, 4, 6, 5, 8, 0, 9, 7, 3, 1 };
-	CoutArr(arrTestQuick, 10);
+	CoutVector(arrTestQuick, 10);
 	QuickSort(arrTestQuick, 0, 9);
 	cout << "after QuickSort" << endl;
-	CoutArr(arrTestQuick, 10);
+	CoutVector(arrTestQuick, 10);
 
 	cout << endl;
 	cout << "====================" << endl;
 	int arrTestMerge[] = { 2, 4, 6, 5, 8, 0, 9, 7, 3, 1 };
-	CoutArr(arrTestMerge, 10);
+	CoutVector(arrTestMerge, 10);
 	int *arrTmp = new int[10];
 	MergeSort(arrTestMerge, arrTmp, 0, 9);
 	cout << "after MergeSort" << endl;
-	CoutArr(arrTestMerge, 10);
+	CoutVector(arrTestMerge, 10);
 
 
 	cout << endl;
@@ -287,6 +337,15 @@ int main()
 	listTest.Reverse();
 	cout << endl << "after Reverse." << endl;
 	listTest.Show();
+
+
+	cout << endl;
+	cout << "====================" << endl;
+	vector<int> vecNums = { 179, 208, 306, 93, 859, 984, 55, 9, 271, 33 };
+	CoutVector(vecNums, vecNums.size());
+	RadixSort(vecNums);
+	cout << endl << "after RadixSort." << endl;
+	CoutVector(vecNums, vecNums.size());
 
 	system("pause");
 	return 0;
