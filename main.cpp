@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include "DataAndAlgorithm/myTree.h"
 
 using namespace std;
 
@@ -346,6 +347,42 @@ int main()
 	RadixSort(vecNums);
 	cout << endl << "after RadixSort." << endl;
 	CoutVector(vecNums, vecNums.size());
+
+	cout << endl;
+	cout << "====================" << endl;
+	MyTree<char> tree;
+	TreeNode<char> add, del, mul, eli, a, b, c, d, e;
+	tree.root = &add;
+	add.m_pLeft = &del;
+	add.m_pRight = &e;
+	add.data = '+';
+	del.m_pLeft = &mul;
+	del.m_pRight = &d;
+	del.data = '-';
+	mul.m_pLeft = &eli;
+	mul.m_pRight = &c;
+	mul.data = '*';
+	eli.m_pLeft = &a;
+	eli.m_pRight = &b;
+	eli.data = '/';
+	a.data = 'a';
+	b.data = 'b';
+	c.data = 'c';
+	d.data = 'd';
+	e.data = 'e';
+
+	cout << "中序遍历 : ";
+	tree.InOrder();
+	cout << endl;
+	cout << "前序遍历 : ";
+	tree.PreOrder();
+	cout << endl;
+	cout << "后序遍历 : ";
+	tree.PostOrder();
+	cout << endl;
+	cout << "层序遍历 : ";
+	tree.LevelOrder();
+	cout << endl;
 
 	system("pause");
 	return 0;
