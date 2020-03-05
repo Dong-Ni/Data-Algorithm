@@ -23,5 +23,8 @@
     <ClInclude Include="myTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="BST.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
