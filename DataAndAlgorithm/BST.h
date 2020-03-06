@@ -48,7 +48,6 @@ public:
 
 public:
 	BSTNode<T>* root;
-
 };
 
 #endif
