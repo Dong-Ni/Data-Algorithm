@@ -2,6 +2,7 @@
 #include <vector>
 #include <list>
 #include "DataAndAlgorithm/myTree.h"
+#include "DataAndAlgorithm/BST.h"
 
 using namespace std;
 
@@ -383,6 +384,41 @@ int main()
 	cout << "层序遍历 : ";
 	tree.LevelOrder();
 	cout << endl;
+
+	cout << endl;
+	cout << "====================" << endl;
+	BST<int> m;
+	Element<int> elea, eleb, elec, eled, elee, elef, eleg, eleh, elej, elek, elel;
+	elea.key = 5;
+	eleb.key = 3;
+	elec.key = 11;
+	eled.key = 3;
+	elee.key = 15;
+	elef.key = 2;
+	eleg.key = 8;
+	eleh.key = 22;
+	elej.key = 20;
+	elek.key = 9;
+	elel.key = 21;
+
+	cout << m.Insert(elea) << endl;//a=5, 就是root
+	cout << m.Insert(eleb) << endl;
+	cout << m.Insert(elec) << endl;
+	cout << m.Insert(eled) << endl;
+	cout << m.Insert(elee) << endl;
+	cout << m.Insert(elef) << endl;
+	cout << m.Insert(eleg) << endl;
+	cout << m.Insert(eleh) << endl;
+	cout << m.Insert(elej) << endl;
+	cout << m.Insert(elek) << endl;
+	cout << m.Insert(elel) << endl;
+	m.DisPlay();
+
+	BSTNode<int>* p = m.Search(elef);
+	cout << "找到的是： " << p->data.key << endl;
+
+	BSTNode<int>* p2 = m.SearchOrd(elee);
+	cout << "找到的是： " << p2->data.key << endl;
 
 	system("pause");
 	return 0;
