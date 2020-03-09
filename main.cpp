@@ -3,6 +3,7 @@
 #include <list>
 #include "DataAndAlgorithm/myTree.h"
 #include "DataAndAlgorithm/BST.h"
+#include "DataAndAlgorithm/MaxHeap.h"
 
 using namespace std;
 
@@ -385,6 +386,7 @@ int main()
 	tree.LevelOrder();
 	cout << endl;
 
+
 	cout << endl;
 	cout << "====================" << endl;
 	BST<int> m;
@@ -400,7 +402,6 @@ int main()
 	elej.key = 20;
 	elek.key = 9;
 	elel.key = 21;
-
 	cout << m.Insert(elea) << endl;//a=5, 就是root
 	cout << m.Insert(eleb) << endl;
 	cout << m.Insert(elec) << endl;
@@ -413,12 +414,35 @@ int main()
 	cout << m.Insert(elek) << endl;
 	cout << m.Insert(elel) << endl;
 	m.DisPlay();
-
 	BSTNode<int>* p = m.Search(elef);
 	cout << "找到的是： " << p->data.key << endl;
-
 	BSTNode<int>* p2 = m.SearchOrd(elee);
 	cout << "找到的是： " << p2->data.key << endl;
+
+
+
+	cout << endl;
+	cout << "====================" << endl;
+	MaxHeap<int> h(100);
+	cout << h.IsEmpty() << endl;
+	h.Push(20);
+	cout << h.Top() << endl;
+	h.Push(30);
+	cout << h.Top() << endl;
+	h.Push(15);
+	cout << h.Top() << endl;
+	h.Push(90);
+	h.Push(35);
+	cout << h.Top() << endl;
+	h.Pop();
+	cout << h.Top() << endl;
+	h.Pop();
+	cout << h.Top() << endl;
+	h.Pop();
+	cout << h.Top() << endl;
+	h.Pop();
+	cout << h.Top() << endl;
+
 
 	system("pause");
 	return 0;
