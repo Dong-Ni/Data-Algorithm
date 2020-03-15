@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <stack>
+#include <queue>
 
 #define MAX_GRAPH_NUM   20
 
@@ -52,6 +53,7 @@ public:
 			std::cout << "Current Graph is Empty" << std::endl;
 		}
 
+		std::cout << "深度优先遍历： ";
 		std::stack<int> gStack; //用堆栈记录访问下标顺序
 		std::cout << m_graphData[0] << " ";
 		m_vecVisied[0] = true;
@@ -71,6 +73,37 @@ public:
 			}
 		}
 
+		for (auto it : m_vecVisied) it = false;
+
+		std::cout << std::endl;
+	}
+
+	//广度优先算法
+	void BFS()
+	{
+		if (m_nCurNum == 0)
+		{
+			std::cout << "Current Graph is Empty" << std::endl;
+		}
+
+		std::cout << "广度优先遍历： ";
+		std::queue<int> gQueue; //用队列记录访问下标顺序
+		std::cout << m_graphData[0] << " ";
+		m_vecVisied[0] = true;
+		gQueue.push(0);
+		while (gQueue.size() > 0)
+		{
+			int nNextBeg = gQueue.front();
+			int nCurNext = GetNextUnVisiedMatrix(nNextBeg);
+			while (nCurNext != -1)
+			{
+				std::cout << m_graphData[nCurNext] << " ";
+				m_vecVisied[nCurNext] = true;
+				gQueue.push(nCurNext);
+				nCurNext = GetNextUnVisiedMatrix(nNextBeg);
+			}
+			gQueue.pop();
+		}
 		for (auto it : m_vecVisied) it = false;
 
 		std::cout << std::endl;

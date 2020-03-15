@@ -301,7 +301,7 @@ int main()
 	char chrTest[] = "abcd";
 	vector<string> vecRetStr;
 	Permutations(chrTest, 0, 3, vecRetStr);
-	for (auto it : vecRetStr) cout << it << " , ";
+	//for (auto it : vecRetStr) cout << it << " , ";
 
 	cout << endl;
 	cout << "====================" << endl;
@@ -466,6 +466,7 @@ int main()
 
 	graph.DisplayMatrix();
 	graph.DFS();
+	graph.BFS();
 
 	system("pause");
 	return 0;
