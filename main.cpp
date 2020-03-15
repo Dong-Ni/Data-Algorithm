@@ -466,6 +466,7 @@ int main()
 
 	graph.DisplayMatrix();
 	graph.DFS();
+	graph.BFS();
 
 	system("pause");
 	return 0;
