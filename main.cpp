@@ -465,6 +465,7 @@ int main()
 	graph.addEage(4, 3);
 
 	graph.DisplayMatrix();
+	graph.DFS();
 
 	system("pause");
 	return 0;
