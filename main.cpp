@@ -4,6 +4,7 @@
 #include "DataAndAlgorithm/myTree.h"
 #include "DataAndAlgorithm/BST.h"
 #include "DataAndAlgorithm/MaxHeap.h"
+#include "DataAndAlgorithm/GraphByMatrix.h"
 
 using namespace std;
 
@@ -443,6 +444,27 @@ int main()
 	h.Pop();
 	cout << h.Top() << endl;
 
+	cout << endl;
+	cout << "====================" << endl;
+	GraphByMatrix graph;
+	graph.addGraphData('A'); //0
+	graph.addGraphData('B'); //1
+	graph.addGraphData('C'); //2
+	graph.addGraphData('D'); //3
+	graph.addGraphData('E'); //4
+
+	graph.addEage(0, 1);
+	graph.addEage(0, 3);
+	graph.addEage(1, 0);
+	graph.addEage(1, 4);
+	graph.addEage(2, 4);
+	graph.addEage(3, 0);
+	graph.addEage(3, 4);
+	graph.addEage(4, 1);
+	graph.addEage(4, 2);
+	graph.addEage(4, 3);
+
+	graph.DisplayMatrix();
 
 	system("pause");
 	return 0;
