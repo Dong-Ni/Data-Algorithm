@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <complex>
 #include "DataAndAlgorithm/myTree.h"
 #include "DataAndAlgorithm/BST.h"
 #include "DataAndAlgorithm/MaxHeap.h"
@@ -26,7 +27,7 @@ void BubbleSort(int arr[], int nLen)
 	{
 		for (int j = 0; j < nLen - i - 1; ++j)
 		{
-			if (arr[j] > arr[j + 1]) swap(arr[j], arr[j + 1]);
+			if (arr[j] > arr[j + 1])swap(arr[j], arr[j + 1]);
 		}
 	}
 }
@@ -53,7 +54,7 @@ int BinarySearch_I(int* arr, int nTar, int nLen)
 	int nRight = nLen - 1;
 	while (nLeft <= nRight)
 	{
-		int nMid = (nLeft + nRight) / 2;
+		int nMid = (nLeft + nRight/ 2);
 		if (arr[nMid] == nTar) return nMid;
 		else if (arr[nMid] > nTar) nRight = nMid - 1;
 		else nLeft = nMid + 1;
@@ -301,7 +302,7 @@ int main()
 	char chrTest[] = "abcd";
 	vector<string> vecRetStr;
 	Permutations(chrTest, 0, 3, vecRetStr);
-	//for (auto it : vecRetStr) cout << it << " , ";
+	//for (auto it : vecRetStrcout << it << " , ";
 
 	cout << endl;
 	cout << "====================" << endl;
@@ -404,16 +405,16 @@ int main()
 	elek.key = 9;
 	elel.key = 21;
 	cout << m.Insert(elea) << endl;//a=5, 就是root
-	cout << m.Insert(eleb) << endl;
-	cout << m.Insert(elec) << endl;
-	cout << m.Insert(eled) << endl;
-	cout << m.Insert(elee) << endl;
-	cout << m.Insert(elef) << endl;
-	cout << m.Insert(eleg) << endl;
-	cout << m.Insert(eleh) << endl;
-	cout << m.Insert(elej) << endl;
-	cout << m.Insert(elek) << endl;
-	cout << m.Insert(elel) << endl;
+	cout << m.Insert(eleb)<< endl;
+	cout << m.Insert(elec)<< endl;
+	cout << m.Insert(eled)<< endl;
+	cout << m.Insert(elee)<< endl;
+	cout << m.Insert(elef)<< endl;
+	cout << m.Insert(eleg)<< endl;
+	cout << m.Insert(eleh)<< endl;
+	cout << m.Insert(elej)<< endl;
+	cout << m.Insert(elek)<< endl;
+	cout << m.Insert(elel)<< endl;
 	m.DisPlay();
 	BSTNode<int>* p = m.Search(elef);
 	cout << "找到的是： " << p->data.key << endl;
@@ -425,24 +426,24 @@ int main()
 	cout << endl;
 	cout << "====================" << endl;
 	MaxHeap<int> h(100);
-	cout << h.IsEmpty() << endl;
+	cout << h.IsEmpty()<< endl;
 	h.Push(20);
 	cout << h.Top() << endl;
 	h.Push(30);
-	cout << h.Top() << endl;
+	cout << h.Top()<< endl;
 	h.Push(15);
 	cout << h.Top() << endl;
 	h.Push(90);
 	h.Push(35);
-	cout << h.Top() << endl;
+	cout << h.Top()<< endl;
 	h.Pop();
-	cout << h.Top() << endl;
+	cout << h.Top()<< endl;
 	h.Pop();
-	cout << h.Top() << endl;
+	cout << h.Top()<< endl;
 	h.Pop();
-	cout << h.Top() << endl;
+	cout << h.Top()<< endl;
 	h.Pop();
-	cout << h.Top() << endl;
+	cout << h.Top()<< endl;
 
 	cout << endl;
 	cout << "====================" << endl;
